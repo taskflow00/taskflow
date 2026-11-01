@@ -58,48 +58,177 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | TaskFlow</title>
+    <title>Create Account | TaskFlow</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- TaskFlow Styles -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/main.js" defer></script>
 </head>
 
-<body>
+<body class="register-page">
 
-    <div class="register-container">
-        <h1>TaskFlow</h1>
-        <p>Create your account</p>
+    <main class="register-layout">
 
-        <?php if ($message !== ''): ?>
-            <p><?= htmlspecialchars($message) ?></p>
-        <?php endif; ?>
-        <form action="register.php" method="POST">
+        <!-- Brand Section -->
+        <section class="register-visual">
 
-            <label>Full Name</label>
-            <input type="text" name="full_name" placeholder="Enter your full name" required>
+            <a href="index.php" class="taskflow-brand register-brand">
+                <span class="brand-mark">T</span>
+                <span>TaskFlow</span>
+            </a>
 
-            <label>Email Address</label>
-            <input type="email" name="email" placeholder="Enter your email" required>
+            <div class="register-visual-content">
+                <span class="register-eyebrow">ONE WORKSPACE. BETTER WORK.</span>
 
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Create a password" required>
+                <h1>Make great work<br>happen together.</h1>
 
-            <label>Register as</label>
-            <select name="role" required>
-                <option value="client">Client</option>
-                <option value="freelancer">Freelancer</option>
-            </select>
+                <p>
+                    Whether you're managing projects or offering your skills,
+                    TaskFlow gives you a place to work smarter and stay organized.
+                </p>
 
-            <button type="submit">Create Account</button>
+                <div class="register-feature-list">
+                    <div>
+                        <span class="feature-number">01</span>
+                        <span>Manage projects with clarity</span>
+                    </div>
 
-        </form>
+                    <div>
+                        <span class="feature-number">02</span>
+                        <span>Connect with the right people</span>
+                    </div>
 
-        <p>Already have an account? <a href="login.php">Login</a></p>
-    </div>
+                    <div>
+                        <span class="feature-number">03</span>
+                        <span>Track work and measure progress</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="register-visual-footer">
+                PLAN <span>•</span> COLLABORATE <span>•</span> DELIVER
+            </div>
+
+        </section>
+
+
+        <!-- Registration Form -->
+        <section class="register-form-section">
+
+            <div class="register-form-wrapper">
+
+                <div class="register-mobile-brand">
+                    <a href="index.php" class="taskflow-brand">
+                        <span class="brand-mark">T</span>
+                        <span>TaskFlow</span>
+                    </a>
+                </div>
+
+                <div class="register-heading">
+                    <span class="register-step">GET STARTED TODAY</span>
+                    <h2>Create your account</h2>
+                    <p>Fill in your details to join the TaskFlow workspace.</p>
+                </div>
+
+                <?php if ($message !== ''): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= htmlspecialchars($message) ?>
+                    </div>
+                <?php endif; ?>
+
+                <form action="register.php" method="POST">
+
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label">Full Name</label>
+                        <input
+                            type="text"
+                            class="form-control taskflow-input"
+                            id="full_name"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input
+                            type="email"
+                            class="form-control taskflow-input"
+                            id="email"
+                            name="email"
+                            placeholder="name@example.com"
+                            required>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                class="form-control taskflow-input"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                required>
+
+                            <button type="button" class="password-toggle" data-target="password">
+                                Show
+                            </button>
+                        </div>
+
+                        <div class="form-text">Choose a password you can remember.</div>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <label for="role" class="form-label">I want to join as a</label>
+
+                        <select
+                            class="form-select taskflow-input"
+                            id="role"
+                            name="role"
+                            required>
+                            <option value="client">Client — I want to hire freelancers</option>
+                            <option value="freelancer">Freelancer — I want to find projects</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn taskflow-button w-100">
+                        Create Account <span>→</span>
+                    </button>
+
+                </form>
+
+                <div class="register-prompt">
+                    Already have an account?
+                    <a href="login.php">Sign in</a>
+                </div>
+
+                <div class="register-form-footer">
+                    By creating an account, you agree to use TaskFlow responsibly.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 

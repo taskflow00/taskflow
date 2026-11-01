@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($status >= 200 && $status < 300) {
                 $message = 'Registration successful! Check your email if confirmation is required.';
+                $messageType = 'success';
             } else {
                 $message = $result['msg'] ?? $result['message'] ?? 'Registration failed. Please try again.';
             }
@@ -145,10 +146,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <?php if ($message !== ''): ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-<?= $messageType ?>" role="alert">
                         <?= htmlspecialchars($message) ?>
                     </div>
-                <?php endif; ?>
+                <?php?>
 
                 <form action="register.php" method="POST">
 

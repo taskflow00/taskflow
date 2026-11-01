@@ -79,6 +79,7 @@ if (isset($_POST['login'])) {
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,29 +87,159 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | TaskFlow</title>
+
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="auth-page">
 
-    <div class="login-container">
-        <h1>TaskFlow</h1>
-        <p>Welcome back! Please login.</p>
+    <main class="auth-layout">
 
-        <form method="POST">
+        <section class="auth-form-section">
 
-            <label>Email Address</label>
-            <input type="email" name="email" placeholder="Enter your email" required>
+            <div class="auth-brand">
+                <div class="brand-icon">T</div>
+                <span>TaskFlow</span>
+            </div>
 
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Enter your password" required>
+            <div class="auth-form-wrapper">
 
-            <button type="submit" name="login">Login</button>
+                <div class="auth-heading">
+                    <span class="eyebrow">WELCOME BACK</span>
+                    <h1>Sign in to your account</h1>
+                    <p>Manage your projects and get things done.</p>
+                </div>
 
-        </form>
+                <?php if (!empty($message)): ?>
+                    <div class="auth-message">
+                        <?= htmlspecialchars($message) ?>
+                    </div>
+                <?php endif; ?>
 
-        <p>Don't have an account? <a href="register.php">Register</a></p>
-    </div>
+                <form method="POST" class="auth-form">
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="password-label">
+                            <label for="password">Password</label>
+                            <a href="#" class="forgot-link">Forgot password?</a>
+                        </div>
+
+                        <div class="password-input">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required>
+                            <button type="button" id="togglePassword" class="toggle-password">
+                                Show
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" name="login" class="auth-submit">
+                        Sign in
+                        <span>→</span>
+                    </button>
+
+                </form>
+
+                <p class="auth-switch">
+                    Don't have an account?
+                    <a href="register.php">Create an account</a>
+                </p>
+
+            </div>
+
+            <footer class="auth-footer">
+                © 2026 TaskFlow. All rights reserved.
+            </footer>
+
+        </section>
+
+        <section class="auth-visual-section">
+
+            <div class="visual-content">
+                <div class="visual-badge">
+                    <span class="status-dot"></span>
+                    PROJECT MANAGEMENT MADE SIMPLE
+                </div>
+
+                <h2>Work smarter.<br>Achieve more.</h2>
+
+                <p>
+                    Bring your projects, tasks, and collaboration
+                    together in one organized workspace.
+                </p>
+
+                <div class="visual-card">
+                    <div class="visual-card-header">
+                        <span>Project Overview</span>
+                        <span class="visual-live">● Live</span>
+                    </div>
+
+                    <div class="visual-project">
+                        <div class="project-icon">W</div>
+                        <div>
+                            <strong>Website Redesign</strong>
+                            <small>Project progress</small>
+                        </div>
+                        <span class="project-percent">75%</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill"></div>
+                    </div>
+
+                    <div class="visual-stats">
+                        <div>
+                            <strong>12</strong>
+                            <small>Tasks completed</small>
+                        </div>
+                        <div>
+                            <strong>4</strong>
+                            <small>In progress</small>
+                        </div>
+                        <div>
+                            <strong>2</strong>
+                            <small>Team members</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="visual-caption">
+                    One workspace. Every project. Better results.
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            const isPassword = passwordInput.type === 'password';
+
+            passwordInput.type = isPassword ? 'text' : 'password';
+            this.textContent = isPassword ? 'Hide' : 'Show';
+        });
+    </script>
 
 </body>
 

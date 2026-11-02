@@ -331,3 +331,74 @@
         gap: 12px;
     }
 }
+
+
+
+/* Topbar User Profile */
+.topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    color: #1E293B;
+    transition: background 0.2s ease;
+}
+
+.topbar-user:hover {
+    background: #F8EEF2;
+    color: #1E293B;
+}
+
+.topbar-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #F8EEF2;
+    color: #A97589;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.topbar-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.topbar-user-info strong {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.topbar-role {
+    font-size: 11px;
+    color: #64748B;
+    text-transform: capitalize;
+}
+
+.topbar-profile-icon {
+    color: #64748B;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+@media (max-width: 576px) {
+    .topbar-user {
+        padding: 5px;
+        gap: 7px;
+    }
+
+    .topbar-user-info {
+        display: none;
+    }
+
+    .topbar-profile-icon {
+        display: none;
+    }
+}

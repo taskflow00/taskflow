@@ -1,35 +1,26 @@
+
 <?php
 
-require_once __DIR__ . '/../config/supabase.php';
+require_once __DIR__ . '/../includes/auth.php';
 
-if (empty(SUPABASE_URL) || empty(SUPABASE_KEY)) {
-    die("Supabase configuration is missing.");
-}
+requireLogin();
 
-$curl = curl_init(SUPABASE_URL . '/rest/v1/profiles?select=id&limit=1');
+$role = $_SESSION['role'] ?? '';
 
-curl_setopt_array($curl, [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => [
-        'apikey: ' . SUPABASE_KEY,
-        'Authorization: Bearer ' . SUPABASE_KEY
-    ],
-    CURLOPT_TIMEOUT => 15
-]);
+if ($role === 'client') {
 
-$response = curl_exec($curl);
+    header('Location: /client/dashboard.php');
+    exit;
+} elseif ($role === 'freelancer') {
 
-// Get connection information before ending the request
-$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-$error = curl_error($curl);
+    header('Location: /freelancer/dashboard.php');
+    exit;
+} elseif ($role === 'admin') {
 
-if ($response === false) {
-    die("Connection error: " . htmlspecialchars($error));
-}
-
-if ($status >= 200 && $status < 300) {
-    echo "TaskFlow connected to Supabase!";
+    header('Location: /admin/dashboard.php');
+    exit;
 } else {
-    echo "Supabase responded with HTTP Status: " . $status;
-    echo "<pre>" . htmlspecialchars($response) . "</pre>";
+
+    http_response_code(403);
+    exit('Invalid user role.');
 }

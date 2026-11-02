@@ -1,3 +1,7 @@
+<?php
+$currentPage = basename($_SERVER['PHP_SELF']);
+?>
+
 <aside class="dashboard-sidebar" id="dashboardSidebar">
 
     <!-- Brand -->
@@ -18,36 +22,42 @@
 
         <span class="sidebar-section-label">Workspace</span>
 
-        <a href="/client/dashboard.php" class="active">
+        <a href="/client/dashboard.php"
+            class="<?php echo ($currentPage === 'dashboard.php') ? 'active' : ''; ?>">
             <span class="nav-icon">⌂</span>
             <span class="nav-label">Dashboard</span>
         </a>
 
-        <a href="/client/projects.php">
+        <a href="/client/projects.php"
+            class="<?php echo ($currentPage === 'projects.php') ? 'active' : ''; ?>">
             <span class="nav-icon">▣</span>
             <span class="nav-label">My Projects</span>
         </a>
 
-        <a href="/client/create-project.php">
+        <a href="/client/create-project.php"
+            class="<?php echo ($currentPage === 'create-project.php') ? 'active' : ''; ?>">
             <span class="nav-icon">＋</span>
             <span class="nav-label">Create Project</span>
         </a>
 
         <span class="sidebar-section-label">Management</span>
 
-        <a href="/client/freelancers.php">
+        <a href="/client/freelancers.php"
+            class="<?php echo ($currentPage === 'freelancers.php') ? 'active' : ''; ?>">
             <span class="nav-icon">♙</span>
             <span class="nav-label">Find Freelancers</span>
         </a>
 
-        <a href="/client/submissions.php">
+        <a href="/client/submissions.php"
+            class="<?php echo ($currentPage === 'submissions.php') ? 'active' : ''; ?>">
             <span class="nav-icon">▤</span>
             <span class="nav-label">Submissions</span>
         </a>
 
         <span class="sidebar-section-label">Account</span>
 
-        <a href="/client/profile.php">
+        <a href="/client/profile.php"
+            class="<?php echo ($currentPage === 'profile.php') ? 'active' : ''; ?>">
             <span class="nav-icon">⚙</span>
             <span class="nav-label">My Profile</span>
         </a>

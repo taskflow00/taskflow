@@ -4,6 +4,16 @@ require_once __DIR__ . '/../config/supabase.php';
 
 session_start();
 
+// Redirect already logged-in users
+if (
+    !empty($_SESSION['user_id']) &&
+    !empty($_SESSION['access_token']) &&
+    !empty($_SESSION['role'])
+) {
+    header('Location: index.php');
+    exit;
+}
+
 $message = '';
 
 if (isset($_POST['login'])) {
@@ -96,7 +106,7 @@ if (isset($_POST['login'])) {
                         $_SESSION['role'] = $profile['role'];
 
                         // Login successful
-                        // Role-based dashboard redirect will be added later.
+                        // Redirect to the main entry point for role-based routing.
                         header('Location: index.php');
                         exit;
                     }

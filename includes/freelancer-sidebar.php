@@ -1,3 +1,7 @@
+<?php
+$currentPage = basename($_SERVER['PHP_SELF']);
+?>
+
 <aside class="dashboard-sidebar" id="dashboardSidebar">
 
     <!-- Brand -->
@@ -18,41 +22,48 @@
 
         <span class="sidebar-section-label">Workspace</span>
 
-        <a href="/freelancer/dashboard.php" class="active">
+        <a href="/freelancer/dashboard.php"
+            class="<?php echo ($currentPage === 'dashboard.php') ? 'active' : ''; ?>">
             <span class="nav-icon">⌂</span>
             <span class="nav-label">Dashboard</span>
         </a>
 
-        <a href="/freelancer/invitations.php">
+        <a href="/freelancer/invitations.php"
+            class="<?php echo ($currentPage === 'invitations.php') ? 'active' : ''; ?>">
             <span class="nav-icon">✉</span>
             <span class="nav-label">Invitations</span>
         </a>
 
-        <a href="/freelancer/projects.php">
+        <a href="/freelancer/projects.php"
+            class="<?php echo ($currentPage === 'projects.php') ? 'active' : ''; ?>">
             <span class="nav-icon">▣</span>
             <span class="nav-label">My Projects</span>
         </a>
 
-        <a href="/freelancer/tasks.php">
+        <a href="/freelancer/tasks.php"
+            class="<?php echo ($currentPage === 'tasks.php') ? 'active' : ''; ?>">
             <span class="nav-icon">☑</span>
             <span class="nav-label">My Tasks</span>
         </a>
 
         <span class="sidebar-section-label">Work Management</span>
 
-        <a href="/freelancer/time-tracking.php">
+        <a href="/freelancer/time-tracking.php"
+            class="<?php echo ($currentPage === 'time-tracking.php') ? 'active' : ''; ?>">
             <span class="nav-icon">◷</span>
             <span class="nav-label">Time Tracking</span>
         </a>
 
-        <a href="/freelancer/submissions.php">
+        <a href="/freelancer/submissions.php"
+            class="<?php echo ($currentPage === 'submissions.php') ? 'active' : ''; ?>">
             <span class="nav-icon">▤</span>
             <span class="nav-label">Submissions</span>
         </a>
 
         <span class="sidebar-section-label">Account</span>
 
-        <a href="/freelancer/profile.php">
+        <a href="/freelancer/profile.php"
+            class="<?php echo ($currentPage === 'profile.php') ? 'active' : ''; ?>">
             <span class="nav-icon">⚙</span>
             <span class="nav-label">My Profile</span>
         </a>

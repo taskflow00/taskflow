@@ -2,7 +2,19 @@
 
 require_once __DIR__ . '/../config/supabase.php';
 
+session_start();
+
+if (
+    !empty($_SESSION['user_id']) &&
+    !empty($_SESSION['access_token']) &&
+    !empty($_SESSION['role'])
+) {
+    header('Location: index.php');
+    exit;
+}
+
 $message = '';
+$messageType = 'danger';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullName = trim($_POST['full_name'] ?? '');
@@ -145,11 +157,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>Fill in your details to join the TaskFlow workspace.</p>
                 </div>
 
-                <?php if ($message !== ''): ?>
-                    <div class="alert alert-<?= $messageType ?>" role="alert">
-                        <?= htmlspecialchars($message) ?>
+                <?php if ($message !== '') { ?>
+
+                    <div class="alert alert-<?php echo htmlspecialchars($messageType); ?>" role="alert">
+
+                        <?php echo htmlspecialchars($message); ?>
+
                     </div>
-                <?php?>
+
+                <?php } ?>
 
                 <form action="register.php" method="POST">
 

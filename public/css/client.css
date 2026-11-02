@@ -1,0 +1,18 @@
+/* Project Filter Buttons */
+.project-filter {
+    background: var(--white);
+    color: var(--muted);
+    border: 1px solid var(--border);
+}
+
+.project-filter:hover {
+    background: var(--primary-light);
+    color: var(--primary-hover);
+    border-color: var(--primary);
+}
+
+.project-filter.active {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}

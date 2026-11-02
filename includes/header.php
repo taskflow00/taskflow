@@ -20,7 +20,17 @@ if (!isset($sidebars[$userRole])) {
 }
 
 // User initials
-$initials = strtoupper(substr($userName, 0, 1));
+// User initials
+$nameParts = explode(' ', trim($userName));
+
+$initials = strtoupper(substr($nameParts[0], 0, 1));
+
+if (count($nameParts) > 1) {
+    $initials .= strtoupper(substr(end($nameParts), 0, 1));
+}
+
+// Profile page URL
+$profileUrl = '/' . $userRole . '/profile.php';
 
 ?>
 
@@ -77,22 +87,31 @@ $initials = strtoupper(substr($userName, 0, 1));
 
                 </div>
 
+
                 <div class="topbar-right">
 
-                    <div class="user-profile">
+                    <a href="<?php echo $profileUrl; ?>" class="topbar-user text-decoration-none">
 
-                        <div class="user-avatar">
-                            <?= htmlspecialchars($initials) ?>
+                        <div class="topbar-avatar">
+                            <?php echo htmlspecialchars($initials); ?>
                         </div>
 
-                        <div class="user-details">
-                            <strong><?= htmlspecialchars($userName) ?></strong>
-                            <small><?= htmlspecialchars(ucfirst($userRole)) ?></small>
+                        <div class="topbar-user-info">
+                            <strong>
+                                <?php echo htmlspecialchars($userName); ?>
+                            </strong>
+
+                            <span class="topbar-role">
+                                <?php echo htmlspecialchars(ucfirst($userRole)); ?>
+                            </span>
                         </div>
 
-                    </div>
+                        <span class="topbar-profile-icon">⌄</span>
+
+                    </a>
 
                 </div>
+
 
             </header>
 

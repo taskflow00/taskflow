@@ -402,3 +402,158 @@
         display: none;
     }
 }
+
+
+/* =========================================
+   TASKFLOW - DASHBOARD BUTTON SYSTEM
+========================================= */
+
+/* Base button styling */
+.dashboard-content .btn,
+.dashboard-content .taskflow-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 9px;
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Primary button */
+.dashboard-content .btn-primary,
+.dashboard-content .taskflow-button {
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: 0 2px 5px rgba(193, 139, 159, 0.15);
+}
+
+.dashboard-content .btn-primary:hover,
+.dashboard-content .taskflow-button:hover {
+    border-color: var(--primary-hover);
+    background: var(--primary-hover);
+    color: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(193, 139, 159, 0.22);
+}
+
+/* Secondary button */
+.dashboard-content .btn-secondary {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text);
+}
+
+.dashboard-content .btn-secondary:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary-hover);
+}
+
+/* Outline primary button */
+.dashboard-content .btn-outline-primary {
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary-hover);
+}
+
+.dashboard-content .btn-outline-primary:hover {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-hover);
+}
+
+/* Light button */
+.dashboard-content .btn-light {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--muted);
+}
+
+.dashboard-content .btn-light:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary-hover);
+}
+
+/* Danger button */
+.dashboard-content .btn-danger {
+    border: 1px solid #F2C8CC;
+    background: #FFF1F2;
+    color: #C2414D;
+}
+
+.dashboard-content .btn-danger:hover {
+    border-color: #E8A5AC;
+    background: #FCE4E7;
+    color: #A92F3C;
+}
+
+/* Outline danger */
+.dashboard-content .btn-outline-danger {
+    border: 1px solid #F2C8CC;
+    background: transparent;
+    color: #C2414D;
+}
+
+.dashboard-content .btn-outline-danger:hover {
+    background: #FFF1F2;
+    color: #A92F3C;
+}
+
+/* Small buttons */
+.dashboard-content .btn-sm {
+    min-height: 34px;
+    padding: 0 13px;
+    border-radius: 7px;
+    font-size: 11px;
+}
+
+/* Large buttons */
+.dashboard-content .btn-lg {
+    min-height: 49px;
+    padding: 0 24px;
+    font-size: 13px;
+}
+
+/* Button focus */
+.dashboard-content .btn:focus-visible,
+.dashboard-content .taskflow-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(193, 139, 159, 0.2);
+}
+
+/* Disabled buttons */
+.dashboard-content .btn:disabled,
+.dashboard-content .taskflow-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Button groups */
+.dashboard-content .btn-group {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.dashboard-content .btn-group .btn {
+    border-radius: 8px !important;
+}
+
+/* Mobile buttons */
+@media (max-width: 576px) {
+    .dashboard-content .btn,
+    .dashboard-content .taskflow-button {
+        min-height: 40px;
+        padding: 0 14px;
+    }
+}

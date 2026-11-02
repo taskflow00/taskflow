@@ -1,8 +1,27 @@
-/* Project Filter Buttons */
+
+/* =========================================
+   TASKFLOW - CLIENT STYLES
+========================================= */
+
+
+/* =========================================
+   PROJECT FILTER BUTTONS
+========================================= */
+
 .project-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
     background: var(--white);
     color: var(--muted);
-    border: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .project-filter:hover {
@@ -15,4 +34,226 @@
     background: var(--primary);
     color: var(--white);
     border-color: var(--primary);
+}
+
+
+/* =========================================
+   CREATE PROJECT - PAGE
+========================================= */
+
+.create-project-page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.create-project-title {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.create-project-description {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.create-project-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.create-project-back:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary-hover);
+}
+
+
+/* =========================================
+   PROJECT FORM CARD
+========================================= */
+
+.create-project-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--white);
+    box-shadow: 0 3px 12px rgba(30, 41, 59, 0.035);
+}
+
+.create-project-card-header {
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+    border-bottom: 1px solid var(--border);
+}
+
+.create-project-card-header h5 {
+    margin: 0 0 6px;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.create-project-card-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   FORM LABELS
+========================================= */
+
+.create-project-label {
+    margin-bottom: 9px;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.create-project-label span {
+    color: #D45B70;
+}
+
+
+/* =========================================
+   FORM INPUTS
+========================================= */
+
+.create-project-page .taskflow-input {
+    min-height: 47px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    box-shadow: none;
+}
+
+.create-project-page .taskflow-input::placeholder {
+    color: var(--light-muted);
+    font-size: 12px;
+}
+
+.create-project-page .taskflow-input:hover {
+    border-color: #D3B2BF;
+}
+
+.create-project-page .taskflow-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(193, 139, 159, 0.13);
+}
+
+.create-project-page .create-project-textarea {
+    min-height: 165px;
+    padding: 14px;
+    line-height: 1.7;
+    resize: vertical;
+}
+
+.create-project-hint {
+    display: block;
+    margin-top: 7px;
+    color: var(--light-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   BUDGET INPUT
+========================================= */
+
+.create-project-budget .input-group-text {
+    min-width: 44px;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+    background: var(--background);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.create-project-budget .taskflow-input {
+    border-radius: 0 8px 8px 0;
+}
+
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+
+.create-project-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding-top: 23px;
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+}
+
+.create-project-actions .taskflow-button {
+    min-width: 145px;
+    min-height: 43px;
+    margin: 0;
+}
+
+.create-project-actions .taskflow-button-secondary {
+    min-width: 100px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .create-project-page {
+        max-width: 100%;
+    }
+
+    .create-project-title {
+        font-size: 21px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .create-project-title {
+        font-size: 20px;
+    }
+
+    .create-project-card .card-body {
+        padding: 20px !important;
+    }
+
+    .create-project-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .create-project-actions .taskflow-button {
+        width: 100%;
+    }
+
 }

@@ -35,6 +35,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: none;
 }
 
 body {
@@ -91,24 +92,94 @@ a {
 }
 
 /* Buttons */
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+/* Base TaskFlow button */
 .taskflow-button {
-    min-height: 50px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 42px;
+    padding: 0 18px;
+    margin-top: 0;
+
+    border: 1px solid var(--primary);
+    border-radius: 9px;
+
     background: var(--primary);
     color: var(--white);
-    font-size: 14px;
-    font-weight: 700;
-    transition: 0.2s ease;
+
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
+/* Hover */
 .taskflow-button:hover {
     background: var(--primary-hover);
+    border-color: var(--primary-hover);
     color: var(--white);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
-.taskflow-button span {
-    margin-left: 8px;
+/* Focus */
+.taskflow-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(193, 139, 159, 0.2);
+}
+
+/* Disabled */
+.taskflow-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Small button */
+.taskflow-button-sm {
+    min-height: 34px;
+    padding: 0 13px;
+    font-size: 11px;
+}
+
+/* Large button */
+.taskflow-button-lg {
+    min-height: 49px;
+    padding: 0 24px;
+    font-size: 14px;
+}
+
+/* Secondary button */
+.taskflow-button-secondary {
+    background: var(--white);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.taskflow-button-secondary:hover {
+    background: var(--primary-light);
+    color: var(--primary-hover);
+    border-color: var(--primary);
+}
+
+/* Danger button */
+.taskflow-button-danger {
+    background: #FFF1F2;
+    color: #C2414D;
+    border-color: #F2C8CC;
+}
+
+.taskflow-button-danger:hover {
+    background: #FCE4E7;
+    color: #A92F3C;
+    border-color: #E8A5AC;
 }

@@ -6,6 +6,26 @@ requireRole('client');
 
 $pageTitle = 'My Projects';
 
+require_once __DIR__ . '/../../includes/supabase-api.php';
+
+$projects = [];
+$message = '';
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+try {
+    $projects = supabaseRequest(
+        'GET',
+        'projects?select=id,title,budget,due_date,status,created_at,freelancer_id&client_id=eq.' .
+            urlencode($_SESSION['user_id']) .
+            '&order=created_at.desc'
+    );
+} catch (Exception $e) {
+    $message = $e->getMessage();
+}
+
 require_once __DIR__ . '/../../includes/header.php';
 
 ?>
@@ -25,6 +45,25 @@ require_once __DIR__ . '/../../includes/header.php';
     </a>
 
 </div>
+
+<!-- Success Messages -->
+<?php if (isset($_GET['updated']) && $_GET['updated'] === '1') { ?>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Project successfully updated!
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+<?php } elseif (isset($_GET['deleted']) && $_GET['deleted'] === '1') { ?>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Project successfully deleted!
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+<?php } ?>
 
 <!-- Project Filters -->
 <div class="card p-3 mb-4">
@@ -77,21 +116,95 @@ require_once __DIR__ . '/../../includes/header.php';
 
             <tbody>
 
-                <tr>
-                    <td colspan="5" class="text-center py-5">
+                <?php if ($message !== '') { ?>
 
-                        <h6 class="fw-bold">No projects yet</h6>
+                    <tr>
+                        <td colspan="5" class="text-center py-5 text-danger">
+                            <?php echo htmlspecialchars($message); ?>
+                        </td>
+                    </tr>
 
-                        <p class="text-muted mb-3">
-                            You haven't created any projects.
-                        </p>
+                <?php } elseif (empty($projects)) { ?>
 
-                        <a href="create-project.php" class="btn taskflow-button btn-sm">
-                            Create Your First Project
-                        </a>
+                    <tr>
+                        <td colspan="5" class="text-center py-5">
 
-                    </td>
-                </tr>
+                            <h6 class="fw-bold">No projects yet</h6>
+
+                            <p class="text-muted mb-3">
+                                You haven't created any projects.
+                            </p>
+
+                            <a href="create-project.php" class="btn taskflow-button btn-sm">
+                                Create Your First Project
+                            </a>
+
+                        </td>
+                    </tr>
+
+                <?php } else { ?>
+
+                    <?php foreach ($projects as $project) { ?>
+
+                        <tr>
+                            <td>
+                                <strong>
+                                    <?php echo htmlspecialchars($project['title']); ?>
+                                </strong>
+                            </td>
+
+                            <td>
+                                ₱<?php echo number_format((float)$project['budget'], 2); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars(ucwords(str_replace('_', ' ', $project['status']))); ?>
+                            </td>
+
+                            <td>
+                                <?php echo date('M d, Y', strtotime($project['created_at'])); ?>
+                            </td>
+
+                            <td>
+                                <a href="project-details.php?id=<?php echo urlencode($project['id']); ?>"
+                                    class="btn btn-sm btn-outline-secondary">
+                                    View
+                                </a>
+
+                                <?php if ($project['status'] === 'open' && $project['freelancer_id'] === null) { ?>
+
+                                    <a href="edit-project.php?id=<?php echo urlencode($project['id']); ?>"
+                                        class="btn btn-sm btn-success">
+                                        Edit
+                                    </a>
+
+                                <?php } ?>
+
+                                <form method="POST" action="delete-project.php"
+                                    class="d-inline"
+                                    onsubmit="return confirm('Are you sure you want to delete this project? This action cannot be undone.');">
+
+                                    <input
+                                        type="hidden"
+                                        name="project_id"
+                                        value="<?php echo htmlspecialchars($project['id']); ?>">
+
+                                    <input
+                                        type="hidden"
+                                        name="csrf_token"
+                                        value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
+
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        Delete
+                                    </button>
+
+                                </form>
+                            </td>
+                        </tr>
+
+                    <?php } ?>
+
+                <?php } ?>
 
             </tbody>
 

@@ -183,3 +183,74 @@ a {
     color: #A92F3C;
     border-color: #E8A5AC;
 }
+
+
+/* =========================================
+   PROJECT DETAILS COMPONENTS
+========================================= */
+
+.taskflow-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.taskflow-page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.taskflow-section-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.taskflow-muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.taskflow-label {
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.taskflow-project-description {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.taskflow-detail-value {
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 7px;
+}
+
+/* Project status */
+.taskflow-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: var(--primary-light);
+    color: var(--primary-hover);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Error message */
+.taskflow-alert-danger {
+    padding: 14px 18px;
+    background: #FFF1F2;
+    color: #C2414D;
+    border: 1px solid #F2C8CC;
+    border-radius: 9px;
+    font-size: 13px;
+}

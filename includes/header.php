@@ -52,6 +52,8 @@ $profileUrl = '/' . $userRole . '/profile.php';
     <!-- TaskFlow CSS -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/client.css">
+
 
 </head>
 

@@ -11,6 +11,8 @@ require_once __DIR__ . '/../../includes/supabase-api.php';
 $projects = [];
 $message = '';
 
+$filteredProjects = [];
+
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -65,36 +67,79 @@ require_once __DIR__ . '/../../includes/header.php';
 
 <?php } ?>
 
+
+<?php
+
+$selectedStatus = $_GET['status'] ?? 'all';
+
+$allowedStatuses = ['all', 'open', 'in_progress', 'completed'];
+
+if (!in_array($selectedStatus, $allowedStatuses, true)) {
+    $selectedStatus = 'all';
+}
+
+// Filter projects based on selected status
+if ($selectedStatus === 'all') {
+    $filteredProjects = $projects;
+} else {
+    $filteredProjects = [];
+
+    foreach ($projects as $project) {
+        if ($project['status'] === $selectedStatus) {
+            $filteredProjects[] = $project;
+        }
+    }
+}
+
+?>
+
 <!-- Project Filters -->
 <div class="card p-3 mb-4">
 
     <div class="d-flex gap-2 flex-wrap">
 
-        <button class="btn btn-sm btn-outline-secondary active">
+        <a href="projects.php?status=all"
+            class="btn btn-sm btn-outline-secondary <?php echo $selectedStatus === 'all' ? 'active' : ''; ?>">
             All Projects
-        </button>
+        </a>
 
-        <button class="btn btn-sm btn-outline-secondary">
+        <a href="projects.php?status=open"
+            class="btn btn-sm btn-outline-secondary <?php echo $selectedStatus === 'open' ? 'active' : ''; ?>">
             Open
-        </button>
+        </a>
 
-        <button class="btn btn-sm btn-outline-secondary">
+        <a href="projects.php?status=in_progress"
+            class="btn btn-sm btn-outline-secondary <?php echo $selectedStatus === 'in_progress' ? 'active' : ''; ?>">
             In Progress
-        </button>
+        </a>
 
-        <button class="btn btn-sm btn-outline-secondary">
+        <a href="projects.php?status=completed"
+            class="btn btn-sm btn-outline-secondary <?php echo $selectedStatus === 'completed' ? 'active' : ''; ?>">
             Completed
-        </button>
+        </a>
 
     </div>
 
 </div>
 
+
 <!-- Projects Table -->
 <div class="card p-4">
 
     <div class="mb-3">
-        <h5 class="fw-bold mb-1">All Projects</h5>
+        <h5 class="fw-bold mb-1">
+            <?php
+            if ($selectedStatus === 'all') {
+                echo 'All Projects';
+            } elseif ($selectedStatus === 'open') {
+                echo 'Open Projects';
+            } elseif ($selectedStatus === 'in_progress') {
+                echo 'In Progress Projects';
+            } elseif ($selectedStatus === 'completed') {
+                echo 'Completed Projects';
+            }
+            ?>
+        </h5>
         <p class="text-muted mb-0">
             View and manage your posted projects.
         </p>
@@ -128,23 +173,30 @@ require_once __DIR__ . '/../../includes/header.php';
 
                     <tr>
                         <td colspan="5" class="text-center py-5">
-
                             <h6 class="fw-bold">No projects yet</h6>
-
                             <p class="text-muted mb-3">
                                 You haven't created any projects.
                             </p>
-
                             <a href="create-project.php" class="btn taskflow-button btn-sm">
                                 Create Your First Project
                             </a>
+                        </td>
+                    </tr>
 
+                <?php } elseif (empty($filteredProjects)) { ?>
+
+                    <tr>
+                        <td colspan="5" class="text-center py-5">
+                            <h6 class="fw-bold">No matching projects</h6>
+                            <p class="text-muted mb-0">
+                                There are no projects under this status.
+                            </p>
                         </td>
                     </tr>
 
                 <?php } else { ?>
 
-                    <?php foreach ($projects as $project) { ?>
+                    <?php foreach ($filteredProjects as $project) { ?>
 
                         <tr>
                             <td>
@@ -197,6 +249,7 @@ require_once __DIR__ . '/../../includes/header.php';
                                     <button type="submit" class="btn btn-sm btn-danger">
                                         Delete
                                     </button>
+
 
                                 </form>
                             </td>

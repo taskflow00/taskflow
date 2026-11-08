@@ -2,7 +2,8 @@
 
 require_once __DIR__ . '/../config/supabase.php';
 
-session_start();
+require_once __DIR__ . '/../includes/session.php';
+tf_session_start();
 
 // Redirect already logged-in users
 if (
@@ -63,9 +64,6 @@ if (isset($_POST['login'])) {
                 !empty($result['access_token']) &&
                 !empty($result['user']['id'])
             ) {
-
-                // Create secure session ID
-                session_regenerate_id(true);
 
                 // Save user information
                 $_SESSION['access_token'] = $result['access_token'];

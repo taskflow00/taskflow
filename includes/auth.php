@@ -1,10 +1,9 @@
 
 <?php
 
-// Start session
-if (!isset($_SESSION)) {
-    session_start();
-}
+// Start session (encrypted cookie session, see includes/session.php)
+require_once __DIR__ . '/session.php';
+tf_session_start();
 
 // Check if user is logged in
 function requireLogin()

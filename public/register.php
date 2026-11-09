@@ -2,7 +2,8 @@
 
 require_once __DIR__ . '/../config/supabase.php';
 
-session_start();
+require_once __DIR__ . '/../includes/session.php';
+tf_session_start();
 
 if (
     !empty($_SESSION['user_id']) &&

@@ -1,16 +1,11 @@
 
 <?php
 
-// Start session
-if (!isset($_SESSION)) {
-    session_start();
-}
+require_once __DIR__ . '/../includes/session.php';
+tf_session_start();
 
-// Clear session data
-session_unset();
-
-// Destroy session
-session_destroy();
+// Clear session data (cookie is removed on shutdown)
+tf_session_destroy();
 
 // Return to login page
 header("Location: /login.php");
